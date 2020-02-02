@@ -27,7 +27,7 @@ def find_vulnerabilities(js_document_as_string):
         for line in js_str.splitlines():
             cnt += 1
             if src in line:
-                detected_logs[str(cnt)] = line
+                detected_logs[str(cnt)] = line.lstrip()
 
     sources = {
         "document.URL": {
@@ -103,7 +103,7 @@ def find_vulnerabilities(js_document_as_string):
         sources[source]["process"].join()
 
     for source in sources:
-        print(sources[source]["detected"])
+        print("Source: {} --> {}".format(source, sources[source]["detected"]))
 
 
 def main():
