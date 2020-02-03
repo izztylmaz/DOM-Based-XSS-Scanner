@@ -23,10 +23,13 @@ def find_vulnerabilities(js_document_as_string):
             "Range.createContextualFragment",
             "window.location"
         ]
+        assignment_based
         cnt = 0
         for line in js_str.splitlines():
             cnt += 1
             if src in line:
+                if is_there_any_assignment(src, line):
+
                 detected_logs[str(cnt)] = line.lstrip()
 
     sources = {
